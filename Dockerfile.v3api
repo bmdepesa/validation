@@ -5,6 +5,7 @@ ENV WORKSPACE /src/rancher-validation
 WORKDIR $WORKSPACE
 ENV PYTHONPATH /src/rancher-validation
 ARG RKE_VERSION=v0.1.17
+ARG AWS_SSH_PEM_KEY=0
 
 COPY [".", "$WORKSPACE"]
 
@@ -15,4 +16,6 @@ RUN wget https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERS
     mv rke_linux-amd64 /bin/rke && \
     chmod +x /bin/rke && \
     cd $WORKSPACE && \
+    mkdir -p .ssh && \
+    echo ${AWS_SSH_PEM_KEY} | base64 -d > .ssh/jenkins-rke-validation.pem && \
     pip install -r requirements_v3api.txt
