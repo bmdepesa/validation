@@ -16,7 +16,7 @@ node {
 
       stage('Precheck') { 
         def vars = [CLUSTER_TYPES, EXTRA_VARS, K8S_UPGRADE_VERSIONS] 
-        loadEnvironmentVariables [variables: []]
+        loadEnvironmentVariables [variables: vars]
         sh "env"
       }
     }
