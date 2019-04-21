@@ -15,8 +15,9 @@ node {
       deleteDir()
 
       stage('Precheck') { 
-        def vars = [CLUSTER_TYPES, EXTRA_VARS, K8S_UPGRADE_VERSIONS] 
-        loadEnvironmentVariables [variables: vars]
+        def vars = [CLUSTER_TYPES, EXTRA_VARS, K8S_UPGRADE_VERSIONS]
+        def params = [variables: vars] 
+        loadEnvironmentVariables params
         sh "env"
       }
     }
