@@ -16,8 +16,10 @@ node {
 
       stage('Precheck') { 
         def params = [variables: [CLUSTER_TYPES, EXTRA_VARS, K8S_UPGRADE_VERSIONS]] 
+        
         loadEnvironmentVariables params
-        println("test: ${env.ver3}")
+        
+        println("test: ${env.version3}")
       }
     }
   } catch (Exception err) {
