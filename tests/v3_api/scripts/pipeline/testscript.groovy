@@ -19,6 +19,7 @@ node {
       }
 
       stage('Precheck') { 
+        sh "echo $version3"
         def params = [variables: [CLUSTER_TYPES, EXTRA_VARS, K8S_UPGRADE_VERSIONS]] 
         
         loadEnvironmentVariables params
