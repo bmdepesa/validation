@@ -14,12 +14,15 @@ node {
     wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm', 'defaultFg': 2, 'defaultBg':1]) {
       deleteDir()
 
+      def param
+
       withCredentials([string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'version3')]) {
         sh "echo $version3"
+        param = "$version3"
       }
 
       stage('Precheck') { 
-        sh "echo $version3"
+        sh "echo $param"
         def params = [variables: [CLUSTER_TYPES, EXTRA_VARS, K8S_UPGRADE_VERSIONS]] 
         
         loadEnvironmentVariables params
