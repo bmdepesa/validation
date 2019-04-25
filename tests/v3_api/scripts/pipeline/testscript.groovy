@@ -13,6 +13,11 @@ node {
   try {
     wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm', 'defaultFg': 2, 'defaultBg':1]) {
       deleteDir()
+      credentials(name: 'AWS_ACCESS_KEY_ID', description: 'A user to build with', defaultValue: '', credentialType: "Username with password", required: true 
+
+      withCredentials([string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'version3')]) {
+        sh "echo $version3"
+      }
 
       stage('Precheck') { 
         def params = [variables: [CLUSTER_TYPES, EXTRA_VARS, K8S_UPGRADE_VERSIONS]] 
